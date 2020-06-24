@@ -17,7 +17,10 @@ def get_status(user_id):
         'fields': 'online',
         'access_token': VK_TOKEN
     }
-    user_status = requests.post(url=URL_VK_API, params=params)
+    try:
+        user_status = requests.post(url=URL_VK_API, params=params)
+    except:
+        print('An exception occurred')
     return user_status.json()['response'][0]['online']
 
 CALLER = os.getenv('NUMBER_FROM')
@@ -42,7 +45,10 @@ def vk_user_name(user_id):
                 'fields': 'online',
                 'access_token': VK_TOKEN
             }
-    first_name = requests.post(url=URL_VK_API, params=params)
+    try:
+        first_name = requests.post(url=URL_VK_API, params=params)
+    except:
+        print('An exception occurred')
     return first_name.json()['response'][0]['first_name']
 
 if __name__ == '__main__':
