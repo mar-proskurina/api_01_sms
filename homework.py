@@ -47,8 +47,14 @@ def vk_user_name(user_id):
             }
     try:
         first_name = requests.post(url=URL_VK_API, params=params)
-    except:
-        print('An exception occurred')
+    except requests.exceptions.ConnectionError as err:
+        print(f'A Connection error occurred, specifically {err}.')
+    except requests.exceptions.Timeout:
+        print('The request timed out.')
+    except requests.exceptions.TooManyRedirects:
+        print('Too many redirects.')
+    except requests.exceptions.RequestException as err:
+        print(f'An error occured, specifically {err}.')
     return first_name.json()['response'][0]['first_name']
 
 if __name__ == '__main__':
