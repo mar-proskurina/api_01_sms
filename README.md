@@ -1,2 +1,3 @@
 # api_01_sms
-API 01 sms
+
+This script sends an SMS message to a designated phone number if specified VK user is online.
